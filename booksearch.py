@@ -1,7 +1,7 @@
 __author__ = "Erik Smartt"
 __copyright__ = "Copyright 2011, Erik Smartt"
 __license__ = "MIT"
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 __usage__ = """Normal usage:
   ./booksearch.py --awskey=YOUR-AWS-KEY --awssec=YOUR-AWS-SECRET --term=SEARCH-TERM
 
@@ -33,9 +33,7 @@ class BookSearch(object):
         self.AWSAccessKeyId = AWSAccessKeyId
         self.AssociateTag = AssociateTag
         self.AWSSecretKey = AWSSecretKey # Required by the new API rules!
-        self.server_response_xml = None
         self.query_string = None
-        self.soup = None
         self.is_valid = None
         self.error_message = None
         self.verbose = False
@@ -81,8 +79,6 @@ class BookSearch(object):
         return url
 
     def _build_url(self, dict):
-        main_query = "http://ecs.amazonaws.com/onca/xml"
-
         query_dict = {}
 
         if self.AssociateTag:
@@ -120,42 +116,43 @@ class BookSearch(object):
 
         self.query_url = self._get_signed_url(self.AWSAccessKeyId, self.AWSSecretKey, query_dict)
 
-        return
+        return self.query_url
 
-    def _fetch(self):
-        if not self.query_url:
-            self.server_response_xml = None
-            self.is_valid = False
-            return
+    def fetch_response(self, url):
+        connection = urllib.urlopen(url)
+        raw_xml = connection.read()
+        connection.close()
 
-        fp = urllib.urlopen(self.query_url)
-        tmp_server_response_xml = fp.read()
-        fp.close()
+        soup = BeautifulStoneSoup(markup=raw_xml)
 
-        self.soup = BeautifulStoneSoup(markup=tmp_server_response_xml)
+        return soup.prettify()
 
-        self.server_response_xml = self.soup.prettify()
-
-    def search(self):
+    def search(self, query_url=None):
         """
         Execute the currently-setup search.
         """
+        if query_url is not None:
+            self.query_url = query_url
+
         if self.verbose:
-            print("BookSearch::search(): query_url: %s" % self.query_url)
+            print("BookSearch::search(): query_url: {url}".format(url=self.query_url))
 
         if not self.query_url:
-            self.is_valid = False
             return
 
-        if not self.server_response_xml:
-            self._fetch()
+        self.is_valid = False
+
+        server_response_xml = self.fetch_response(self.query_url)
 
         if self.very_verbose:
             print("BookSearch::search(): server_response_xml:")
             print("### START ####")
-            print("%s" % self.server_response_xml)
+            print("{xml}".format(xml=server_response_xml))
             print("### END ####")
 
+        return self.parse_amazon_xml(amazon_xml=server_response_xml)
+
+    def parse_amazon_xml(self, amazon_xml=None):
         #
         # Check for a valid response:
         #
@@ -180,32 +177,31 @@ class BookSearch(object):
         #
         self.search_results = []
 
-        if not self.soup:
-            self.soup = BeautifulStoneSoup(markup=self.server_response_xml)
+        soup = BeautifulStoneSoup(markup=amazon_xml)
 
         try:
-            is_valid_contents = str(self.soup.find("isvalid").contents[0]).strip()
+            is_valid_contents = str(soup.find("isvalid").contents[0]).strip()
             self.is_valid = (is_valid_contents == u'True')
         except AttributeError, e:
             self.is_valid = False
 
         try:
-            self.error_message = self.soup.find("error").message[0]
+            self.error_message = soup.find("error").message[0].strip()
         except:
             self.error_message = None
 
         try:
-            self.total_results = self.soup.find("totalresults").contents[0]
+            self.total_results = soup.find("totalresults").contents[0].strip()
         except:
             self.total_results = u'0'
 
         try:
-            self.total_pages = self.soup.find("totalpages").contents[0]
+            self.total_pages = soup.find("totalpages").contents[0].strip()
         except:
             self.total_pages = u'0'
 
         # Loop over the results
-        for item in self.soup.findAll("item"):
+        for item in soup.findAll("item"):
             result = {}
 
             try:
@@ -295,7 +291,7 @@ class BookSearch(object):
 
             self.search_results.append(result)
 
-        return self.is_valid
+        return self.search_results
 
     def setup_book_search(self, keyword):
         # Save the keyword
@@ -308,6 +304,8 @@ class BookSearch(object):
             'SearchIndex': 'Books',
             'ResponseGroup': 'ItemAttributes,Images,EditorialReview',
         })
+
+        return self.query_url
 
     def setup_detail_search(self, asin=None, isbn=None):
         """
@@ -338,6 +336,8 @@ class BookSearch(object):
 
         self._build_url(d)
 
+        return self.query_url
+
     def setup_similar_items_search(self, asin=None, isbn=None):
         """
         Lookup similar books by ASIN.
@@ -360,28 +360,37 @@ class BookSearch(object):
 
         self._build_url(d)
 
+        return self.query_url
+
 
 def test(search_term, AWSAccessKeyId, AssociateTag, AWSSecretKey, verbose=True, very_verbose=False):
     if verbose:
-        print("test(search_term=%s)..." % search_term)
+        print("test(search_term={term})...".format(term=search_term))
 
     if AWSAccessKeyId and AWSSecretKey:
-        search_obj = BookSearch(AWSAccessKeyId, AWSSecretKey=AWSSecretKey)
-        search_obj.verbose = verbose
-        search_obj.very_verbose = very_verbose
-        search_obj.setup_book_search(keyword=search_term)
-        search_obj.search()
+        bs = BookSearch(AWSAccessKeyId, AWSSecretKey=AWSSecretKey, AssociateTag=AssociateTag)
 
-        print("Valid: %s" % search_obj.is_valid)
-        print("Total Results: %s" % search_obj.total_results)
-        print("Total Pages: %s" % search_obj.total_pages)
+        bs.verbose = verbose
+        bs.very_verbose = very_verbose
 
-        if search_obj.search_results:
+        search_url = bs.setup_book_search(keyword=search_term)
+        print("URL: {url}".format(url=search_url))
+
+        results = bs.search(query_url=search_url)
+
+        print("Valid: {bool}".format(bool=bs.is_valid))
+        print("Total Results: {count}".format(count=bs.total_results))
+        print("Total Pages: {count}".format(count=bs.total_pages))
+
+        if results:
             if verbose:
-                for item in search_obj.search_results:
-                    print("[%s] Title: %s, by %s" % (item['isbn'], item['title'], item['author']))
+                for item in results:
+                    try:
+                        print("{item[isbn]} Title: {item[title]}, by {item[author]}".format(item=item))
+                    except KeyError, e:
+                        print("KeyError while formatting string: {msg}".format(msg=e))
         else:
-            print('ERR: %s' % search_obj.error_message)
+            print('ERR: {msg}'.format(msg=bs.error_message))
 
     else:
         print('ERR: AWSAccessKeyId and AWSSecretKey are required!')
@@ -402,7 +411,7 @@ if __name__ == "__main__":
                                    ["term=", "awskey=", "awssec=", "awstag=", "test", "verbose", "help", "version",
                                     "vv"])
     except getopt.GetoptError, err:
-        print("%s" % str(err))
+        print("{msg}".format(msg=str(err)))
         sys.exit(2)
 
     awskey = None
