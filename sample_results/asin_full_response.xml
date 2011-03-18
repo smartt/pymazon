@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<ItemLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2008-08-19">
+	<OperationRequest>
+		<HTTPHeaders>
+			<Header Name="UserAgent" Value="Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.0.3) Gecko/2008092414 Firefox/3.0.3"/>
+		</HTTPHeaders>
+		<RequestId>321fc1ce-19e5-41a9-f521-82f589e0254c</RequestId>
+		<Arguments>
+			<Argument Name="Operation" Value="ItemLookup"/>
+			<Argument Name="Service" Value="AWSECommerceService"/>
+			<Argument Name="ItemId" Value="0750643889"/>
+			<Argument Name="IdType" Value="ASIN"/>
+			<Argument Name="AWSAccessKeyId" Value="123412341234"/>
+			<Argument Name="ResponseGroup" Value="ItemAttributes,Images,Reviews,EditorialReview,OfferSummary,Subjects"/>
+			<Argument Name="Version" Value="2008-08-19"/>
+		</Arguments>
+		<RequestProcessingTime>0.1181590000000000</RequestProcessingTime>
+	</OperationRequest>
+	<Items>
+		<Request>
+			<IsValid>True</IsValid>
+			<ItemLookupRequest>
+				<Condition>New</Condition>
+				<DeliveryMethod>Ship</DeliveryMethod>
+				<IdType>ASIN</IdType>
+				<MerchantId>Amazon</MerchantId>
+				<OfferPage>1</OfferPage>
+				<ItemId>0750643889</ItemId>
+				<ResponseGroup>ItemAttributes</ResponseGroup>
+				<ResponseGroup>Images</ResponseGroup>
+				<ResponseGroup>Reviews</ResponseGroup>
+				<ResponseGroup>EditorialReview</ResponseGroup>
+				<ResponseGroup>OfferSummary</ResponseGroup>
+				<ResponseGroup>Subjects</ResponseGroup>
+				<ReviewPage>1</ReviewPage>
+				<ReviewSort>-SubmissionDate</ReviewSort>
+				<VariationPage>All</VariationPage>
+			</ItemLookupRequest>
+		</Request>
+		<Item>
+			<ASIN>0750643889</ASIN>
+			<DetailPageURL>http://www.amazon.com/Innovation-Entrepreneuship-Drucker-Peter-F/dp/0750643889%3FSubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D0750643889</DetailPageURL>
+			<ItemLinks>
+				<ItemLink>
+					<Description>Technical Details</Description>
+					<URL>http://www.amazon.com/Innovation-Entrepreneuship-Drucker-Peter-F/dp/tech-data/0750643889%3FSubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3D0750643889</URL>
+				</ItemLink>
+				<ItemLink>
+					<Description>Add To Baby Registry</Description>
+					<URL>http://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3D0750643889%26SubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3D0750643889</URL>
+				</ItemLink>
+				<ItemLink>
+					<Description>Add To Wedding Registry</Description>
+					<URL>http://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3D0750643889%26SubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3D0750643889</URL>
+				</ItemLink>
+				<ItemLink>
+					<Description>Add To Wishlist</Description>
+					<URL>http://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3D0750643889%26SubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3D0750643889</URL>
+				</ItemLink>
+				<ItemLink>
+					<Description>Tell A Friend</Description>
+					<URL>http://www.amazon.com/gp/pdp/taf/0750643889%3FSubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3D0750643889</URL>
+				</ItemLink>
+				<ItemLink>
+					<Description>All Customer Reviews</Description>
+					<URL>http://www.amazon.com/review/product/0750643889%3FSubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3D0750643889</URL>
+				</ItemLink>
+				<ItemLink>
+					<Description>All Offers</Description>
+					<URL>http://www.amazon.com/gp/offer-listing/0750643889%3FSubscriptionId%3D144DTWE9SK4YPC37SCG2%26tag%3Dws%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3D0750643889</URL>
+				</ItemLink>
+			</ItemLinks>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">50</Width>
+			</SmallImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL._SL160_.jpg</URL>
+				<Height Units="pixels">160</Height>
+				<Width Units="pixels">107</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL.jpg</URL>
+				<Height Units="pixels">500</Height>
+				<Width Units="pixels">333</Width>
+			</LargeImage>
+			<ImageSets>
+				<ImageSet Category="primary">
+					<SwatchImage>
+						<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL._SL30_.jpg</URL>
+						<Height Units="pixels">30</Height>
+						<Width Units="pixels">20</Width>
+					</SwatchImage>
+					<SmallImage>
+						<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL._SL75_.jpg</URL>
+						<Height Units="pixels">75</Height>
+						<Width Units="pixels">50</Width>
+					</SmallImage>
+					<ThumbnailImage>
+						<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL._SL75_.jpg</URL>
+						<Height Units="pixels">75</Height>
+						<Width Units="pixels">50</Width>
+					</ThumbnailImage>
+					<TinyImage>
+						<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL._SL110_.jpg</URL>
+						<Height Units="pixels">110</Height>
+						<Width Units="pixels">73</Width>
+					</TinyImage>
+					<MediumImage>
+						<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL._SL160_.jpg</URL>
+						<Height Units="pixels">160</Height>
+						<Width Units="pixels">107</Width>
+					</MediumImage>
+					<LargeImage>
+						<URL>http://ecx.images-amazon.com/images/I/51E44HZZPAL.jpg</URL>
+						<Height Units="pixels">500</Height>
+						<Width Units="pixels">333</Width>
+					</LargeImage>
+				</ImageSet>
+			</ImageSets>
+			<ItemAttributes>
+				<Author>Peter F. Drucker</Author>
+				<Binding>Paperback</Binding>
+				<DeweyDecimalNumber>658</DeweyDecimalNumber>
+				<EAN>9780750643887</EAN>
+				<ISBN>0750643889</ISBN>
+				<Label>Butterworth-Heinemann</Label>
+				<Languages>
+					<Language>
+						<Name>English</Name>
+						<Type>Unknown</Type>
+					</Language>
+					<Language>
+						<Name>English</Name>
+						<Type>Original Language</Type>
+					</Language>
+					<Language>
+						<Name>English</Name>
+						<Type>Published</Type>
+					</Language>
+				</Languages>
+				<ListPrice>
+					<Amount>2195</Amount>
+					<CurrencyCode>USD</CurrencyCode>
+					<FormattedPrice>$21.95</FormattedPrice>
+				</ListPrice>
+				<Manufacturer>Butterworth-Heinemann</Manufacturer>
+				<NumberOfItems>1</NumberOfItems>
+				<NumberOfPages>268</NumberOfPages>
+				<PackageDimensions>
+					<Height Units="hundredths-inches">71</Height>
+					<Length Units="hundredths-inches">906</Length>
+					<Weight Units="hundredths-pounds">101</Weight>
+					<Width Units="hundredths-inches">583</Width>
+				</PackageDimensions>
+				<ProductGroup>Book</ProductGroup>
+				<ProductTypeName>ABIS_BOOK</ProductTypeName>
+				<PublicationDate>2002-04</PublicationDate>
+				<Publisher>Butterworth-Heinemann</Publisher>
+				<Studio>Butterworth-Heinemann</Studio>
+				<Title>Innovation and Entrepreneuship (Drucker Series)</Title>
+			</ItemAttributes>
+			<Subjects>
+				<Subject>Entrepreneurship</Subject>
+				<Subject>Business / Economics / Finance</Subject>
+				<Subject>Business/Economics</Subject>
+			</Subjects>
+			<OfferSummary>
+				<LowestNewPrice>
+					<Amount>6143</Amount>
+					<CurrencyCode>USD</CurrencyCode>
+					<FormattedPrice>$61.43</FormattedPrice>
+				</LowestNewPrice>
+				<LowestUsedPrice>
+					<Amount>1980</Amount>
+					<CurrencyCode>USD</CurrencyCode>
+					<FormattedPrice>$19.80</FormattedPrice>
+				</LowestUsedPrice>
+				<TotalNew>1</TotalNew>
+				<TotalUsed>7</TotalUsed>
+				<TotalCollectible>0</TotalCollectible>
+				<TotalRefurbished>0</TotalRefurbished>
+			</OfferSummary>
+			<CustomerReviews>
+				<AverageRating>5.0</AverageRating>
+				<TotalReviews>2</TotalReviews>
+				<TotalReviewPages>1</TotalReviewPages>
+				<Review>
+					<ASIN>0750643889</ASIN>
+					<Rating>5</Rating>
+					<HelpfulVotes>1</HelpfulVotes>
+					<CustomerId>A3MAN5CBRX1KEV</CustomerId>
+					<Reviewer>
+						<CustomerId>A3MAN5CBRX1KEV</CustomerId>
+						<Name>Maxim Masiutin</Name>
+						<Location>Chisinau, Republic of Moldova</Location>
+					</Reviewer>
+					<TotalVotes>1</TotalVotes>
+					<Date>2008-08-16</Date>
+					<Summary>Innovation and Entrepreneuship</Summary>
+					<Content>Drucker always seemed to be years, if not decades, ahead of anyone in his field, and Innovation and Entrepreneurship was the first book to treat the subject in a systematic, non-sensational way. Drucker is clear that his book is not about the psychology or character of entrepreneurs. It is not the mysterious "invention", or `flash of genius' so often ascribed to the wealth creator that interests him, but actions and behaviour - how innovation and entrepreneurship can be boiled down to a system that can be applied by anyone. By 1914, the time World War I broke out, "invention" had become "research," a systematic, purposeful activity, which is planned and organized with high predictability both of the results aimed at and likely to be achieved. Something similar now has to be done with respect to innovation. Entrepreneurs will have to learn to practice systematic innovation. 
+
+&lt;br /&gt;
+&lt;br /&gt;Successful entrepreneurs do not wait until having a "bright idea"; they go to work. Altogether, they do not look for the "biggie," the innovation that will "revolutionize the industry," create a "billion-dollar business," or "make one rich overnight." Those entrepreneurs who start out with the idea that they'll make it big--and in a hurry--can be guaranteed failure. They are almost bound to do the wrong things. Drucker states that a management team should be already built before the business will grow mid-side; otherwise it would be too late. He gives the examples when the founders of Ford Motor and Honda Motor to not start the venture until they have found a reliable partner who will run administration, finance, distribution, marketing, sales, and personnel. 
+&lt;br /&gt;
+&lt;br /&gt;Drucker somewhat envisioned the I.T. bubble of 2001. Many new ventures, especially high-tech, fail because they ignore the basic principles that were known for centuries. He states that high-tech is not intrinsically risky. It is not riskier than any other business, if properly applied. Entrepreneurship is only risky, he observes, when so-called entrepreneurs `violate elementary and well-known rules.' It is not risky when it is systematic, managed, and purposeful. 
+&lt;br /&gt;
+&lt;br /&gt;Accroding to Drucker, Innovation does not have to be technical, does not indeed have to be a "thing" altogether. Wherever introduced, it changes the economy from supply-driven to demand-driven, regardless almost of the productive level of the economy. "Innovation," then, is an economic or social rather than a technical term. It can be defined as changing the yield of resources. 
+&lt;br /&gt;
+&lt;br /&gt;The book consists of three sections. 
+&lt;br /&gt;
+
+&lt;br /&gt;In the first section, Drucker describes seven sources of innovative opportunity: The Unexpected, Incongruities, Process Need, Industry and Market Structures, Demographics, Changes in Perception, and New Knowledge. He debunks the believe that innovation is "a bright idea" and maintains that dependable innovative ideas come from systematic exploration of the seven sources of innovative opportunity. 
+&lt;br /&gt;
+&lt;br /&gt;The second section covers entrepreneurship and especially the development of an entrepreneurial culture within an organization. Along with suggestions for things to do, there are a couple of suggestions of things that will probably fail such as buying an entrepreneurial company in order to help a non-entrepreneurial company change. 
+&lt;br /&gt;
+&lt;br /&gt;The third section covers four major entrepreneurial strategies ("fustest with the mostest", "hit them where they ain't", ecological niches, and changing values and characteristics) with a discussion of some derivatives of each strategy and a look at the advantages and pitfalls of each. 
+&lt;br /&gt;
+&lt;br /&gt;I highly recommend the book "The Effective Executive" by Peter Drucker, in addition to this book. </Content>
+				</Review>
+				<Review>
+					<ASIN>0750643889</ASIN>
+					<Rating>5</Rating>
+					<HelpfulVotes>4</HelpfulVotes>
+					<CustomerId>A2P8T9V9EOJ8Z5</CustomerId>
+					<Reviewer>
+						<CustomerId>A2P8T9V9EOJ8Z5</CustomerId>
+						<Name>Nemesis</Name>
+						<Location>U.S.</Location>
+					</Reviewer>
+					<TotalVotes>6</TotalVotes>
+					<Date>2005-03-31</Date>
+					<Summary>Differentiating Entrepreneurship and mere "new business"</Summary>
+					<Content>Peter Drucker, in his sandwich shop example, defined the difference between entrepreneurship and just starting a new business and yet, so few people seem to understand this after so many years. The rest of the book is somewhat interesting but the 5 star rating is because of this single point.  
+
+&lt;br /&gt;
+&lt;br /&gt;This is a must read for anyone in business or engineering school.  This may be simgle most significant distinction made in all of his works and it absolutely ranks up there with Schumpeter's "destructive creation" insight.  Too bad management theory died in the early 1990's.</Content>
+				</Review>
+			</CustomerReviews>
+		</Item>
+	</Items>
+</ItemLookupResponse>
