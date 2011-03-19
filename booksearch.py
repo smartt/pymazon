@@ -1,7 +1,7 @@
 __author__ = "Erik Smartt"
 __copyright__ = "Copyright 2011, Erik Smartt"
 __license__ = "MIT"
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 __usage__ = """Normal usage:
   ./booksearch.py --awskey=YOUR-AWS-KEY --awssec=YOUR-AWS-SECRET --term=SEARCH-TERM
 
@@ -318,9 +318,8 @@ class BookSearch(object):
 
         d = {
             'Operation': 'ItemLookup',
-            'SearchIndex': 'Books',
             'ResponseGroup': 'ItemAttributes,Images,EditorialReview',
-            }
+        }
 
         if asin:
             d['IdType'] = 'ASIN'
@@ -331,6 +330,7 @@ class BookSearch(object):
         elif isbn:
             d['IdType'] = 'ISBN'
             d['ItemId'] = isbn
+            d['SearchIndex'] = 'Books'
 
             self.query_string = "ISBN:%s" % isbn
 
