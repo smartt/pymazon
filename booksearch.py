@@ -265,6 +265,11 @@ class BookSearch(object):
                 result['publisher'] = None
 
             try:
+                result['pub_date'] = item.itemattributes.publicationdate.contents[0].strip()
+            except:
+                result['pub_date'] = None
+
+            try:
                 result['formatted_price'] = item.itemattributes.formattedprice.contents[0].strip()
             except:
                 result['formatted_price'] = None
