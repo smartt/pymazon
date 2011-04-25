@@ -1,7 +1,7 @@
 __author__ = "Erik Smartt"
 __copyright__ = "Copyright 2011, Erik Smartt"
 __license__ = "MIT"
-__version__ = "0.2.2"
+__version__ = "0.2.3"
 __usage__ = """Normal usage:
   ./booksearch.py --awskey=YOUR-AWS-KEY --awssec=YOUR-AWS-SECRET --term=SEARCH-TERM
 
@@ -47,7 +47,7 @@ class BookSearch(object):
         #Amazon adds hundredths of a second to the timestamp (always .000), so we do too.
         #(see http://associates-amazon.s3.amazonaws.com/signed-requests/helper/index.html)
         params['Timestamp'] = time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime())
-        params['Version'] = '2009-03-31'
+        params['Version'] = '2010-11-01'
 
         #Step 1a: sort params
         paramsList = params.items()
@@ -270,9 +270,24 @@ class BookSearch(object):
                 result['pub_date'] = None
 
             try:
-                result['formatted_price'] = item.itemattributes.formattedprice.contents[0].strip()
+                result['list_price'] = item.itemattributes.formattedprice.contents[0].strip()
             except:
-                result['formatted_price'] = None
+                result['list_price'] = None
+
+            try:
+                result['lowest_new_price'] = item.offersummary.lowestnewprice.formattedprice.contents[0].strip()
+            except:
+                result['lowest_new_price'] = None
+
+            try:
+                result['lowest_used_price'] = item.offersummary.lowestusedprice.formattedprice.contents[0].strip()
+            except:
+                result['lowest_used_price'] = None
+
+            try:
+                result['offer_price'] = item.offers.offer.offerlisting.price.formattedprice.contents[0].strip()
+            except:
+                result['offer_price'] = None
 
             try:
                 result['number_of_pages'] = item.itemattributes.numberofpages.contents[0].strip()
@@ -323,7 +338,8 @@ class BookSearch(object):
 
         d = {
             'Operation': 'ItemLookup',
-            'ResponseGroup': 'ItemAttributes,Images,EditorialReview',
+            'ResponseGroup': 'ItemAttributes,Images,EditorialReview,Offers',
+            'MerchantId': 'FeaturedBuyBoxMerchant',
         }
 
         if asin:
@@ -412,9 +428,7 @@ if __name__ == "__main__":
     import getopt
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], ":",
-                                   ["term=", "awskey=", "awssec=", "awstag=", "test", "verbose", "help", "version",
-                                    "vv"])
+        opts, args = getopt.getopt(sys.argv[1:], ":", ["term=", "awskey=", "awssec=", "awstag=", "test", "verbose", "help", "version", "vv"])
     except getopt.GetoptError, err:
         print("{msg}".format(msg=str(err)))
         sys.exit(2)
