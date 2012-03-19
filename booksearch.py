@@ -1,7 +1,7 @@
 __author__ = "Erik Smartt"
 __copyright__ = "Copyright 2011, Erik Smartt"
 __license__ = "MIT"
-__version__ = "0.2.3"
+__version__ = "0.2.4"
 __usage__ = """Normal usage:
   ./booksearch.py --awskey=YOUR-AWS-KEY --awssec=YOUR-AWS-SECRET --term=SEARCH-TERM
 
@@ -47,7 +47,7 @@ class BookSearch(object):
         #Amazon adds hundredths of a second to the timestamp (always .000), so we do too.
         #(see http://associates-amazon.s3.amazonaws.com/signed-requests/helper/index.html)
         params['Timestamp'] = time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime())
-        params['Version'] = '2010-11-01'
+        params['Version'] = '2011-08-01'
 
         #Step 1a: sort params
         paramsList = params.items()
